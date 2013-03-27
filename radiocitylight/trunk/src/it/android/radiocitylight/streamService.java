@@ -1,21 +1,15 @@
 package it.android.radiocitylight;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.Timer;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 /*
@@ -27,7 +21,6 @@ import android.util.Log;
 public class streamService extends Service implements OnPreparedListener, OnErrorListener, AudioManager.OnAudioFocusChangeListener {
 
     MediaPlayer mediaPlayer;
-    NotificationManager notificationManager;
 
     @Override
     public IBinder onBind(Intent arg0){
@@ -42,7 +35,6 @@ public class streamService extends Service implements OnPreparedListener, OnErro
     @Override
     public void onDestroy () {
         if (mediaPlayer != null) mediaPlayer.release();
-        notificationManager.cancel(1);
     }
 
     @Override
@@ -78,11 +70,9 @@ public class streamService extends Service implements OnPreparedListener, OnErro
 
     public void onPrepared(MediaPlayer player) {
         player.start();
-        try {
-            createNotification ();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        dataSong myTask = new dataSong(this);
+        Timer myTimer = new Timer();
+        myTimer.schedule(myTask, 0, 15000); // aggiorno la notifica ogni 15 secondi
     }
 
     public void onAudioFocusChange(int focusChange) {
@@ -116,52 +106,4 @@ public class streamService extends Service implements OnPreparedListener, OnErro
         }
     }
 
-    public void createNotification () throws IOException {
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("RadioCityLight")
-                        .setContentText(getSongData())
-                        .setOngoing(true);
-        Intent resultIntent = new Intent(this, mainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(mainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, mBuilder.build());
-    }
-
-    public String getSongData () throws IOException {
-        URL url = new URL("http://217.27.88.204:8000/7.html");
-        HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-        urlc.setRequestProperty("User-Agent", "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101");
-        urlc.setRequestProperty("Connection", "close");
-        urlc.setConnectTimeout(5000); // Thirty seconds timeout in milliseconds
-        urlc.setRequestMethod("GET");
-        urlc.setDoInput(true);
-        urlc.connect();
-        InputStream is = urlc.getInputStream();
-        String contentAsString = readIt(is);
-        is.close();
-        return contentAsString;
-    }
-
-    // Reads an InputStream and converts it to a String.
-    public String readIt(InputStream stream) throws IOException {
-        Reader reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[500];
-        reader.read(buffer);
-        String htmlContent = new String (buffer);
-        Integer start = htmlContent.indexOf("<body>") + 6;
-        Integer end = htmlContent.indexOf("</body>");
-        htmlContent = htmlContent.substring(start,end);
-        String songData[] = htmlContent.split(",");
-        return songData[6].toUpperCase();
-    }
 }
