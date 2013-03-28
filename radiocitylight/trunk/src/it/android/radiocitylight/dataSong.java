@@ -20,21 +20,24 @@ class dataSong extends TimerTask{
     Context mContext;
     NotificationManager notificationManager;
 
+    /* Costruttore */
     public dataSong (Context mContext) {
-        this.mContext = mContext;
+        this.mContext = mContext; // prendo il contesto da mainActivity per istanziare la notifica
     }
 
+    /* Metodo lanciato dal timerTask */
     @Override()
     public void run() {
 
         try {
-            createNotification();
+            createNotification();  // Creo una nuova notifica
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    /* Legge la pagina 7.html dal server shoutcast */
     public String getSongData () throws IOException {
         URL url = new URL("http://217.27.88.204:8000/7.html");
         HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
@@ -50,7 +53,7 @@ class dataSong extends TimerTask{
         return contentAsString;
     }
 
-    // Reads an InputStream and converts it to a String.
+    /* Prende in input il codice html della pagina 7.html e ne estrapola artista e titolo della cazone */
     public String readIt(InputStream stream) throws IOException {
         Reader reader = new InputStreamReader(stream, "UTF-8");
         char[] buffer = new char[500];
@@ -63,14 +66,19 @@ class dataSong extends TimerTask{
         return songData[6].toUpperCase();
     }
 
+    /* Visualizza la notifica */
     public void createNotification () throws IOException {
+
+        /* Creo la notifica */
         String data = getSongData();
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(mContext)
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("RadioCityLight")
-                        .setContentText(data)
+                        .setSmallIcon(R.drawable.ic_launcher)  // Icona
+                        .setContentTitle("RadioCityLight")     // Titolo
+                        .setContentText(data)                  // Testo
                         .setOngoing(true);
+
+        /* Aggiungo alla notifica la possibilità di tornare alla mainActivity con un tocco */
         Intent resultIntent = new Intent(mContext, mainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(mContext);
         stackBuilder.addParentStack(mainActivity.class);
@@ -81,10 +89,13 @@ class dataSong extends TimerTask{
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         mBuilder.setContentIntent(resultPendingIntent);
+
+        /* Visualizzo la notifica */
         notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, mBuilder.build());
     }
 
+    /* Cancella la notifica */
     public void deleteNotification () {
         notificationManager.cancel(1);
     }

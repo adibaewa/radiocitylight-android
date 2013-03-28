@@ -30,14 +30,14 @@ public class streamService extends Service implements OnPreparedListener, OnErro
 
     @Override
     public void onCreate () {
-        initMediaPlayer();
+        initMediaPlayer();      // Inizializzo il mediaPlayer
     }
 
     @Override
     public void onDestroy () {
-        if (mediaPlayer != null) mediaPlayer.release();
-        myTimer.cancel();
-        myTask.deleteNotification();
+        if (mediaPlayer != null) mediaPlayer.release(); // Stoppo il mediaPlayer
+        myTimer.cancel();                               // Fermo il timer che aggiorna la notifica
+        myTask.deleteNotification();                    // Elimino la notifica
     }
 
     @Override
@@ -72,10 +72,10 @@ public class streamService extends Service implements OnPreparedListener, OnErro
     }
 
     public void onPrepared(MediaPlayer player) {
-        player.start();
-        myTask = new dataSong(this);
+        player.start();                     // Avvio il mediaPlayer
+        myTask = new dataSong(this);        // Creo un nuovo task dalla classe dataSong
         myTimer = new Timer();
-        myTimer.schedule(myTask, 0, 15000); // aggiorno la notifica ogni 15 secondi
+        myTimer.schedule(myTask, 0, 15000); // Con il timer aggiorno la notifica ogni 15 secondi
     }
 
     public void onAudioFocusChange(int focusChange) {
