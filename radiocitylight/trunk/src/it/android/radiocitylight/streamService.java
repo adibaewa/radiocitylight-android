@@ -2,7 +2,6 @@ package it.android.radiocitylight;
 
 import java.io.*;
 import java.util.Timer;
-
 import android.app.Service;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -21,6 +20,8 @@ import android.util.Log;
 public class streamService extends Service implements OnPreparedListener, OnErrorListener, AudioManager.OnAudioFocusChangeListener {
 
     MediaPlayer mediaPlayer;
+    dataSong myTask;
+    Timer myTimer;
 
     @Override
     public IBinder onBind(Intent arg0){
@@ -35,6 +36,8 @@ public class streamService extends Service implements OnPreparedListener, OnErro
     @Override
     public void onDestroy () {
         if (mediaPlayer != null) mediaPlayer.release();
+        myTimer.cancel();
+        myTask.deleteNotification();
     }
 
     @Override
@@ -70,8 +73,8 @@ public class streamService extends Service implements OnPreparedListener, OnErro
 
     public void onPrepared(MediaPlayer player) {
         player.start();
-        dataSong myTask = new dataSong(this);
-        Timer myTimer = new Timer();
+        myTask = new dataSong(this);
+        myTimer = new Timer();
         myTimer.schedule(myTask, 0, 15000); // aggiorno la notifica ogni 15 secondi
     }
 

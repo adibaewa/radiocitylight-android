@@ -7,8 +7,6 @@
     <ToggleButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textOn="Start stream"
-            android:textOff="Stop stream"
             android:id="@+id/toggleButton"
             android:onClick="onToggleClicked"/>
 </LinearLayout>

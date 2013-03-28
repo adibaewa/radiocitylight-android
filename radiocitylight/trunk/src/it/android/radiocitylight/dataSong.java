@@ -18,6 +18,7 @@ import java.util.TimerTask;
 class dataSong extends TimerTask{
 
     Context mContext;
+    NotificationManager notificationManager;
 
     public dataSong (Context mContext) {
         this.mContext = mContext;
@@ -80,8 +81,12 @@ class dataSong extends TimerTask{
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         mBuilder.setContentIntent(resultPendingIntent);
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, mBuilder.build());
+    }
+
+    public void deleteNotification () {
+        notificationManager.cancel(1);
     }
 
 }
