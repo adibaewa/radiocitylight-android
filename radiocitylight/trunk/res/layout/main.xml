@@ -9,5 +9,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/toggleButton"
             android:onClick="onToggleClicked"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nessuna riproduzione"
+            android:id="@id/dataSongTxt"
+            android:layout_gravity="center"
+            android:singleLine="false"/>
 </LinearLayout>
 
