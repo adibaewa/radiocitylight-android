@@ -17,5 +17,12 @@
             android:id="@id/dataSongTxt"
             android:layout_gravity="center"
             android:singleLine="false"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Social"
+            android:id="@id/socialButton"
+            android:onClick="displaySocialActivity"/>
 </LinearLayout>
 
