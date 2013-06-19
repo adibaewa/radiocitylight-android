@@ -115,7 +115,7 @@ public class mainActivity extends Activity{
     }
 
     /** Called when the user clicks the Send button */
-    public void displaySocialActivity() {
+    public void displaySocialActivity(View view) {
         Intent intent = new Intent(this, socialActivity.class);
         startActivity(intent);
     }
