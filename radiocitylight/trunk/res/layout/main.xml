@@ -12,8 +12,10 @@
             android:layout_marginBottom="59dp"
             android:layout_marginTop="116dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/play"
-            android:checked="false"/>
+            android:background="@drawable/toggle_selector"
+            android:checked="false"
+            android:textOn=""
+            android:textOff="" />
 
     <TextView
             android:layout_width="wrap_content"

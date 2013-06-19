@@ -30,6 +30,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="twitter4j-core-3.0.3" level="project" />
+    <orderEntry type="library" name="twitter4j-core-3.0.3" level="project" />
   </component>
 </module>
 
