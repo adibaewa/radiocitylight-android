@@ -4,18 +4,34 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:background="@drawable/background">
-    <ToggleButton
-            android:layout_width="wrap_content"
+
+    <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toggleButton"
-            android:onClick="onToggleClicked"
-            android:layout_marginBottom="59dp"
-            android:layout_marginTop="116dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/toggle_selector"
-            android:checked="false"
-            android:textOn=""
-            android:textOff="" />
+            android:gravity="center"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp">
+
+        <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toggleButton"
+                android:onClick="onToggleClicked"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/toggle_selector"
+                android:checked="false"
+                android:textOn=""
+                android:textOff="" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@id/socialButton"
+                android:onClick="displaySocialActivity"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/twitter"
+                />
+    </LinearLayout>
 
     <TextView
             android:layout_width="wrap_content"
@@ -28,14 +44,5 @@
             android:textSize="20dp"
             />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@id/socialButton"
-            android:onClick="displaySocialActivity"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/twitter"
-            />
 </LinearLayout>
 
