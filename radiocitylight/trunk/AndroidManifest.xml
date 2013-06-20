@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".socialActivity"/>
         <activity android:name=".palinstesto"/>
+        <activity android:name=".infoActivity"/>
 
         <service android:name=".service"/>
     </application>
