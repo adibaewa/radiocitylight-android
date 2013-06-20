@@ -3,6 +3,7 @@ package it.android.radiocitylight;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -68,21 +69,28 @@ public class service extends Service {
                         .setContentText(myRadio.songData)                  // Testo
                         .setOngoing(true);
 
-        /* Aggiungo alla notifica la possibilità di tornare alla mainActivity con un tocco */
-        Intent resultIntent = new Intent(this, mainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(mainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
+        Intent notifyIntent =
+                new Intent(this, mainActivity.class);
+// Sets the Activity to start in a new, empty task
+        notifyIntent.setFlags(notifyIntent.FLAG_ACTIVITY_NEW_TASK | notifyIntent.FLAG_ACTIVITY_CLEAR_TASK);
+// Creates the PendingIntent
+        PendingIntent nIntent =
+                PendingIntent.getActivity(
+                        this,
                         0,
+                        notifyIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
-        mBuilder.setContentIntent(resultPendingIntent);
 
-        /* Visualizzo la notifica */
-        notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, mBuilder.build());
+// Puts the PendingIntent into the notification builder
+        mBuilder.setContentIntent(nIntent);
+// Notifications are issued by sending them to the
+// NotificationManager system service.
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// Builds an anonymous Notification object from the builder, and
+// passes it to the NotificationManager
+        mNotificationManager.notify(1, mBuilder.build());
     }
 
     /* Cancella la notifica */
