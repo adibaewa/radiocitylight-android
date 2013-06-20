@@ -10,14 +10,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
     <TextView
             android:id="@+id/textViewTweet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="#28aae1"
-            />
+            android:textColor="#000000"
+            android:textSize="16dp"/>
 
 </LinearLayout>

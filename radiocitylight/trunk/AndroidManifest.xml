@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".socialActivity"/>
+        <activity android:name=".palinstesto"/>
 
         <service android:name=".service"/>
     </application>

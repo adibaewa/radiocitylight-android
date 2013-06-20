@@ -101,7 +101,9 @@ public class socialActivity extends Activity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             tweet t = getItem(position);
-            viewHolder.name.setText(t.getScreenName() + t.getDate().toString());
+            String temp = t.getDate().toString();
+            temp = temp.substring(0,temp.length()-15);
+            viewHolder.name.setText(temp);
             viewHolder.text.setText(t.getText());
             return convertView;
         }

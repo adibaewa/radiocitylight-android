@@ -120,4 +120,10 @@ public class mainActivity extends Activity{
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Send button */
+    public void displayPalinsesto(View view) {
+        Intent intent = new Intent(this, palinstesto.class);
+        startActivity(intent);
+    }
+
 }
