@@ -69,27 +69,17 @@ public class service extends Service {
                         .setContentText(myRadio.songData)                  // Testo
                         .setOngoing(true);
 
-        Intent notifyIntent =
-                new Intent(this, mainActivity.class);
-// Sets the Activity to start in a new, empty task
+        Intent notifyIntent = new Intent(this, mainActivity.class);
         notifyIntent.setFlags(notifyIntent.FLAG_ACTIVITY_NEW_TASK | notifyIntent.FLAG_ACTIVITY_CLEAR_TASK);
-// Creates the PendingIntent
-        PendingIntent nIntent =
-                PendingIntent.getActivity(
+        PendingIntent nIntent = PendingIntent.getActivity(
                         this,
                         0,
                         notifyIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
 
-// Puts the PendingIntent into the notification builder
         mBuilder.setContentIntent(nIntent);
-// Notifications are issued by sending them to the
-// NotificationManager system service.
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-// Builds an anonymous Notification object from the builder, and
-// passes it to the NotificationManager
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
     }
 

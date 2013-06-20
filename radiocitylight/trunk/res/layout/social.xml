@@ -3,8 +3,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/background">
+              android:layout_height="wrap_content"
+              android:background="@drawable/background"
+              android:gravity="center">
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Twitter"
+            android:id="@+id/textView"
+            android:gravity="center|top"
+            android:textColor="#000000"
+            android:textSize="50dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"/>
+
+    <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"/>
 
     <ListView
             android:layout_width="fill_parent"
@@ -12,4 +29,5 @@
             android:id="@id/tweets"
             android:cacheColorHint="#00000000"
             android:background="@drawable/background"/>
+
 </LinearLayout>
