@@ -6,9 +6,19 @@
               android:layout_height="fill_parent"
               android:background="@drawable/background">
 
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Palinsesto"
+            android:id="@+id/textView9"
+            android:textColor="#000000"
+            android:textSize="50dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"/>
+
     <TableLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             >
 
         <TableRow
@@ -23,7 +33,7 @@
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    android:textSize="30dp"
+                    android:textSize="20dp"
                     android:layout_marginLeft="10dp"/>
 
             <TextView
@@ -35,7 +45,7 @@
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    android:textSize="30dp"
+                    android:textSize="20dp"
                     android:layout_marginRight="10dp"/>
         </TableRow>
 
@@ -118,4 +128,5 @@
         </TableRow>
 
     </TableLayout>
+
 </LinearLayout>

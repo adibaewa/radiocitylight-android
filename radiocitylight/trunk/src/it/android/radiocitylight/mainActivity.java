@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -32,17 +33,30 @@ public class mainActivity extends Activity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Palinsesto").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-
-                return false;
-            }
-        });
-        menu.add("Contatti");
-        menu.add("Credits");
-        menu.add("Esci");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.palinsesto:
+                intent = new Intent(this, palinstesto.class);
+                startActivity(intent);
+                return true;
+            case R.id.info:
+                intent = new Intent(this, infoActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.crediti:
+                intent = new Intent(this, creditiActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onToggleClicked (View view) {
@@ -134,12 +148,6 @@ public class mainActivity extends Activity{
     /** Called when the user clicks the Send button */
     public void displaySocialActivity(View view) {
         Intent intent = new Intent(this, socialActivity.class);
-        startActivity(intent);
-    }
-
-    /** Called when the user clicks the Send button */
-    public void displayPalinsesto(View view) {
-        Intent intent = new Intent(this, palinstesto.class);
         startActivity(intent);
     }
 
