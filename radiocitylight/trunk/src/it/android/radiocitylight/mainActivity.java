@@ -10,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -26,6 +28,21 @@ public class mainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         intent = new Intent(this, service.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Palinsesto").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                return false;
+            }
+        });
+        menu.add("Contatti");
+        menu.add("Credits");
+        menu.add("Esci");
+        return true;
     }
 
     public void onToggleClicked (View view) {
