@@ -79,8 +79,8 @@ public class service extends Service {
                 );
 
         mBuilder.setContentIntent(nIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, mBuilder.build());
     }
 
     /* Cancella la notifica */

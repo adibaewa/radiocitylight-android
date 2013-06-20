@@ -132,7 +132,8 @@ public class mainActivity extends Activity{
         }
 
         protected void onProgressUpdate(Integer... progress) {
-            //setProgressPercent(progress[0]);
+            TextView dataSongTxt = (TextView) findViewById(R.id.dataSongTxt);
+            dataSongTxt.setText("In collegamento..");
         }
 
         protected void onPostExecute(Integer result) {
