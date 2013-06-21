@@ -20,7 +20,7 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Questo progetto è stato realizzato da Carlo Senzacqua e Michael Mandolesi per l'esame di Sistemi Operativi del corso di Informatica dell'Università di Camerino. L'idea nasce dall'esigenza della web radio RadioCityLight di raggiungere più ascoltatori possibile, soprattutto nell'ambiente mobile su android."
+            android:text="Questo progetto è stato realizzato da Carlo Senzacqua e Michael Mandolesi per l'esame di Sistemi Operativi del corso di Informatica dell'Università di Camerino. L'idea nasce dall'esigenza di RadioCityLight di raggiungere più ascoltatori possibile, soprattutto in ambiente mobile. L'applicazione permette di riprodurre il flusso streaming della radio, la lettura degli ultimi aggiornamenti attraverso Twitter e altre informazioni utili."
             android:id="@+id/textView2"
             android:textIsSelectable="false"
             android:textSize="20dp"
